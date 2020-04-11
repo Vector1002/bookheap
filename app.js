@@ -13,6 +13,8 @@ morgan('tiny');
 
 //My routes
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const productRoutes = require("./routes/product");
 
 mongoose
 .connect(process.env.DATABASE, {
@@ -36,6 +38,8 @@ mongoose
 
   ///myRoutes
   app.use('/api',authRoutes);   
+  app.use('/api',userRoutes);   
+  app.use('/api',productRoutes);   
 
 
 
