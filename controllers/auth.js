@@ -6,7 +6,7 @@ var expressJwt = require("express-jwt");
 exports.signup=(req,res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ error: errors.array() });
+      return res.status(422).json({ error: errors.array()[0].msg });
     }
 
     const newUser=new User(req.body);
@@ -45,7 +45,7 @@ exports.signin=(req,res)=>{
     const { email, password } = req.body;
 
     if (!errors.isEmpty()) {
-        return res.status(422).json({ error: errors.array() });
+        return res.status(422).json({ error: errors.array()[0].msg });
     }
 
       User

@@ -24,8 +24,8 @@ var userschema=new mongoose.Schema(
         trim:true
     },
     phoneNo:{
-        type:Number,
-        required:true,
+        type:String,
+        // required:true,
     },
     salt: String,
     encry_password:{

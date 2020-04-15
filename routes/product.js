@@ -22,7 +22,7 @@ router.get("/product/:productId", getProduct);
 router.get('/sale/product/:userId',isSignedIn,isAuthenticated,getSaleList);
 
 router.delete(
-    "/product/:productId/:userId",
+    "/product/:prodductId/:userId",
     isSignedIn,
     isAuthenticated,
     deleteProduct

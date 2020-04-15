@@ -117,15 +117,14 @@ exports.deleteProduct = (req, res) => {
   exports.getAllProducts=(req,res)=>{
     Product.find()
     .select("-photo")
-    .populate("category")
-    .sort([[sortBy, "asc"]])
-    .limit(limit)
+    .populate("upload",'name email phoneNo')
     .exec((err, products) => {
       if (err) {
         return res.status(400).json({
           error: "NO product FOUND"
         });
       }
+      console.log("fadsfas",products)
       res.json(products);
     });
   }
