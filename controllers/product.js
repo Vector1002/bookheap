@@ -25,8 +25,8 @@ exports.createProduct=(req,res,next)=>{
 
     form.parse(req, (err, fields, file) => {
 
-        // console.log(fields);
-        if (err) {
+      if (err) {
+        console.log(err);
             return res.status(400).json({
               error: "problem with image"
             });
@@ -124,7 +124,6 @@ exports.deleteProduct = (req, res) => {
           error: "NO product FOUND"
         });
       }
-      console.log("fadsfas",products)
       res.json(products);
     });
   }
