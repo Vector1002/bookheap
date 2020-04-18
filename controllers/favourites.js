@@ -5,28 +5,54 @@ exports.addFavourites =(req,res)=>{
 
     const { name, description, price } = req.product;
 
-    let purchase=[]
-    purchase.push({
-        id:req.product._id,
-       name,
-       description,
-       price
-        });
 
+    let purchase={}
+    purchase.id=req.product._id,
+    purchase.name=name,
+    purchase.description= description,
+    purchase.price=price   
+    //  purchase.push({
+    //     id:req.product._id,
+    //    name,
+    //    description,
+    //    price
+    //     });
 
-    User.findByIdAndUpdate(
-        { _id: req.profile._id },
-        { $push: { purchase: purchase } },
-        { new: true },
-        (err, user) => {
-          if (err) {
+      // console.log("qqqqssssssfdasf",purchase);
+
+      User
+      .find({_id:req.profile._id})
+      .find({purchase:purchase})
+      .then(pur=>{
+        if(pur.length){
+          console.log("Fdsaf");
             return res.status(400).json({
-              error: "Unable to save purchase list"
-            });
+              error:'Already favourite'
+            })
+      }else{
+        User.findByIdAndUpdate(
+          { _id: req.profile._id },
+          { $push: { purchase: purchase } },
+          { upsert: true },
+          (err, user) => {
+            if (err) {
+              return res.status(400).json({
+                error: "Unable to save purchase list"
+              });
+            }
+            return res.status(200).json(user)
           }
-          return res.status(200).json(user)
-        }
-      );
+        );
+      }
+
+      }).
+      catch(err=>{
+        console.log(err);
+      })
+
+      
+
+  
 }
 
 
