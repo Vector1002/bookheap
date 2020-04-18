@@ -15,6 +15,7 @@ morgan('tiny');
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
+const favouritesRoute = require("./routes/favourites");
 
 mongoose
 .connect(process.env.DATABASE, {
@@ -40,6 +41,7 @@ mongoose
   app.use('/api',authRoutes);   
   app.use('/api',userRoutes);   
   app.use('/api',productRoutes);   
+  app.use('/api',favouritesRoute);   
 
 
 

@@ -1,6 +1,5 @@
 const mongoose=require('mongoose');
 const { ObjectId } = mongoose.Schema;
-const User=require('./user'); 
 
 const productSchema=new mongoose.Schema(
 {

@@ -6,8 +6,9 @@ const formidable = require('formidable');
 exports.getProductById=(req,res,next,id)=>{ 
 
     Product.findById(id,function(err,product){
-        if(err || !user){
+        if(err || !product){
             return res.status(400).json({
+              err:err,
                 error:'Product not found'
             })
         }
@@ -62,6 +63,7 @@ exports.createProduct=(req,res,next)=>{
                 error: "Saving tshirt in DB failed"
               });
             }else{
+
             let sale=[]
                 sale.push({
                     id:product._id,
@@ -87,7 +89,6 @@ exports.createProduct=(req,res,next)=>{
             }
            
           });
-
         
     });
 }
