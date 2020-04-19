@@ -5,7 +5,7 @@ const {
      getProductById,
 }=require('../controllers/product');
 
-const {addFavourites,getFavourites}=require('../controllers/favourites')
+const {addFavourites,getFavourites,deleteFavourites}=require('../controllers/favourites')
 const { isSignedIn, isAuthenticated } = require("../controllers/auth");
 const { getUserById } = require("../controllers/user");
 
@@ -17,12 +17,12 @@ router.post('/addfavorites/:userId/:productId',isSignedIn,isAuthenticated,addFav
 router.get("/favorites/:userId",isSignedIn,isAuthenticated,getFavourites);
 
 
-// router.delete(
-//     "/favorites/:productId/",
-//     isSignedIn,
-//     isAuthenticated,
-//     deleteFavourites
-//   );
+router.get(
+    "/favorites/:userId/:productId",
+    isSignedIn,
+    isAuthenticated,
+    deleteFavourites
+  );
 
 
 module.exports=router;

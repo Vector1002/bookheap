@@ -11,21 +11,11 @@ exports.addFavourites =(req,res)=>{
     purchase.name=name,
     purchase.description= description,
     purchase.price=price   
-    //  purchase.push({
-    //     id:req.product._id,
-    //    name,
-    //    description,
-    //    price
-    //     });
-
-      // console.log("qqqqssssssfdasf",purchase);
-
       User
       .find({_id:req.profile._id})
       .find({purchase:purchase})
       .then(pur=>{
         if(pur.length){
-          console.log("Fdsaf");
             return res.status(400).json({
               error:'Already favourite'
             })
@@ -49,10 +39,6 @@ exports.addFavourites =(req,res)=>{
       catch(err=>{
         console.log(err);
       })
-
-      
-
-  
 }
 
 
@@ -74,6 +60,59 @@ exports.getFavourites =(req,res)=>{
   })
 }
 
-// exports.deleteFavourites =(req,res)=>{
-    
-// }
+exports.deleteFavourites =(req,res)=>{
+
+  User.findOne({_id: req.profile._id}, function (error, data) {
+      if (error) {
+         return res.status(400).json({error:'Not able to removed from DB'});
+      } else if (data) {
+          var records = {'records': data};
+          console.log("ddssssd",data.purchase);
+
+          function search(nameKey, myArray){
+            console.log('je',nameKey,myArray.length)
+            for (var i=0; i < myArray.length; i++) {
+                if (  JSON.stringify(myArray[i].id) === JSON.stringify( nameKey)) {
+                    return i;
+                }
+            }
+        }
+
+          var idx = data.purchase ? search(req.product.id, data.purchase) : -1;
+
+          if (idx !== -1) {
+              data.purchase.splice(idx, 1);
+              data.save(function(error) {
+                  if (error) {
+                      console.log(error);
+                      return res.status(400).json({
+                        error:'Not removed from DB some error occured'
+                      });
+                  } else {
+                    console.log("FDSAfasdf",records)
+                      res.status(200).json({
+                        msg:'Suucessfully removed from Favourites'
+                      });
+                  }
+              });
+              return;
+          }
+      }
+      
+      return res.status(400).json({
+        error:'Not removed from DB some error occured'
+      });
+      })
+}
+
+    // data.purchase.map((pur,index)=>{
+    //   console.log("fdasf",pur)
+
+    //       if( JSON.stringify(pur.id)==JSON.stringify(req.product._id) ){
+    //         pur.purchase.pull({ id: req.product._id }) // removed
+    //   console.log("fdsafdasf",pur)
+    //         return res.status(200)
+    //       }
+
+
+    //     })
