@@ -16,14 +16,14 @@ exports.addFavourites =(req,res)=>{
       .find({purchase:purchase})
       .then(pur=>{
         if(pur.length){
-            return res.status(400).json({
-              error:'Already favourite'
+            return res.status(200).json({
+              error:'Already in favourites list'
             })
       }else{
         User.findByIdAndUpdate(
           { _id: req.profile._id },
           { $push: { purchase: purchase } },
-          { upsert: true },
+          { new: true },
           (err, user) => {
             if (err) {
               return res.status(400).json({
@@ -51,9 +51,9 @@ exports.getFavourites =(req,res)=>{
     .select("-photo")
     .populate("upload",'name email phoneNo')
     .then(prod=>{
-      fav.push(prod)
+      fav.push(prod);
       if(req.profile.purchase.length === index+1){
-        return res.status(200).json(fav)
+        return res.status(200).json(fav);
       }
     })
 
@@ -67,10 +67,8 @@ exports.deleteFavourites =(req,res)=>{
          return res.status(400).json({error:'Not able to removed from DB'});
       } else if (data) {
           var records = {'records': data};
-          console.log("ddssssd",data.purchase);
 
           function search(nameKey, myArray){
-            console.log('je',nameKey,myArray.length)
             for (var i=0; i < myArray.length; i++) {
                 if (  JSON.stringify(myArray[i].id) === JSON.stringify( nameKey)) {
                     return i;
@@ -84,14 +82,12 @@ exports.deleteFavourites =(req,res)=>{
               data.purchase.splice(idx, 1);
               data.save(function(error) {
                   if (error) {
-                      console.log(error);
                       return res.status(400).json({
                         error:'Not removed from DB some error occured'
                       });
                   } else {
-                    console.log("FDSAfasdf",records)
                       res.status(200).json({
-                        msg:'Suucessfully removed from Favourites'
+                        msg:'Sucessfully removed from Favourites'
                       });
                   }
               });
@@ -102,6 +98,7 @@ exports.deleteFavourites =(req,res)=>{
       return res.status(400).json({
         error:'Not removed from DB some error occured'
       });
+
       })
 }
 
