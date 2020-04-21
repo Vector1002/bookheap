@@ -8,7 +8,6 @@ exports.getProductById=(req,res,next,id)=>{
     Product.findById(id,function(err,product){
         if(err || !product){
             return res.status(400).json({
-              err:err,
                 error:'Product not found'
             })
         }
@@ -65,13 +64,7 @@ exports.createProduct=(req,res,next)=>{
             }else{
 
             let sale=[]
-                sale.push({
-                    id:product._id,
-                   name,
-                   description,
-                   price
-                    });
-    
+                sale.push( product._id);
     
               User.findByIdAndUpdate(
                 { _id: req.profile._id },
@@ -110,7 +103,6 @@ exports.deleteProduct = (req, res) => {
       }
       res.json({
         message: "Deletion was a success",
-        deletedProduct
       });
     });
   };

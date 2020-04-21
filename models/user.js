@@ -1,6 +1,8 @@
 const mongoose=require('mongoose');
 const uuidv1 = require("uuid/v1")
 const crypto = require("crypto");
+const Product =require('./product');
+const { ObjectId } = mongoose.Schema;
 
 var userschema=new mongoose.Schema(
  {
@@ -32,14 +34,8 @@ var userschema=new mongoose.Schema(
         type:String,
         required:true,
     },
-    purchase:{
-        type: Array,
-        default: []
-    },
-     sale:{
-        type: Array,
-        default: []
-    }
+    purchase: [{ type : ObjectId, ref: 'Product',default:[]}],
+     sale: [{ type : ObjectId, ref: 'Product',default:[]}]
  },
  {timestamps:true}
 
