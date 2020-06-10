@@ -71,6 +71,7 @@ exports.signin=(req,res)=>{
           return res.json({ token, user: { _id, name, email} });
       })
       .catch(err=>{
+    console.log('hello');
         return res.status(400).json({
             error: "User does not exits. Please Sign up first!"
           });

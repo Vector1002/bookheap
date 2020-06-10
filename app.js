@@ -25,12 +25,15 @@ mongoose
   })
   .then(() => {
     console.log("DB CONNECTED");
+  })
+  .catch((e)=>{
+    console.log(e);
   });
 
 
-  app.get('/',(req,res)=>{
-    res.send('<h1>dfasfa</h1>');
-  });
+  // app.get('/',(req,res)=>{
+  //   res.send('<h1>dfasfa</h1>');
+  // });
 
   //middlewares
   app.use(bodyParser.json());
@@ -45,7 +48,7 @@ mongoose
 
 
 
-  const PORT=process.env.PORT;
+  const PORT=process.env.PORT || 8000;
 
   app.listen(PORT,()=>{
       console.log(`App is running on port ${PORT}`)

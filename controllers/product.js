@@ -42,7 +42,6 @@ exports.createProduct=(req,res,next)=>{
           }
       
           let product = new Product(fields);
-      
           //handle file here
           if (file.photo) {
             if (file.photo.size > 3000000) {
@@ -91,6 +90,15 @@ exports.createProduct=(req,res,next)=>{
 exports.getProduct=(req,res)=>{
     req.product.photo = undefined;
     return res.json(req.product);
+}
+
+exports.getPhoto=(req,res,next)=>{
+  // console.log(req.product)
+  if (req.product.photo.data) {
+    res.set("Content-Type", req.product.photo.contentType);
+    return res.send(req.product.photo.data);
+  }
+  next();
 }
 
 

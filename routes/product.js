@@ -6,7 +6,8 @@ const {
     createProduct,
     getProduct,
     deleteProduct,
-    getAllProducts
+    getAllProducts,
+    getPhoto
 }=require('../controllers/product');
 
 const { isSignedIn, isAuthenticated } = require("../controllers/auth");
@@ -17,6 +18,7 @@ router.param('productId',getProductById);
 
 router.post('/product/create/:userId',isSignedIn,isAuthenticated,createProduct);
 
+router.get("/product/photo/:productId", getPhoto);
 router.get("/product/:productId", getProduct);
 
 router.get('/sale/product/:userId',isSignedIn,isAuthenticated,getSaleList);

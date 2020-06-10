@@ -12,7 +12,7 @@ exports.addFavourites =(req,res)=>{
       .then(user=>{
         if(user.purchase.includes(req.product._id)){
             return res.status(200).json({
-              error:'Already in favourites list'
+              error:'Already in your favourites list'
             })
       }else{
         User.findByIdAndUpdate(
@@ -69,7 +69,7 @@ exports.deleteFavourites =(req,res)=>{
       )
       .then( user => {
         return res.status(200).json({
-          msg:'Succesfully removed from db'
+          msg:'Succesfully removed from ypur favourites list'
         })
       })
       .catch(err=>{

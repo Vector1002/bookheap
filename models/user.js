@@ -1,7 +1,6 @@
 const mongoose=require('mongoose');
 const uuidv1 = require("uuid/v1")
 const crypto = require("crypto");
-const Product =require('./product');
 const { ObjectId } = mongoose.Schema;
 
 var userschema=new mongoose.Schema(
