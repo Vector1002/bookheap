@@ -32,9 +32,9 @@ mongoose
   });
 
 
-  app.get('/',(req,res)=>{
-    res.send('<h1>dfasfa</h1>');
-  });
+  // app.get('/',(req,res)=>{
+  //   res.send('<h1>dfasfa</h1>');
+  // });
 
   //middlewares
   app.use(bodyParser.json());
@@ -47,6 +47,11 @@ mongoose
   app.use('/api',productRoutes);   
   app.use('/api',favouritesRoute);   
 
+
+  if(process.env.NODE_ENV=='production'){
+    app.use(express.static('build'));
+
+  }
 
 
   const PORT=process.env.PORT || 8000;
