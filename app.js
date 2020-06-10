@@ -18,7 +18,7 @@ const productRoutes = require("./routes/product");
 const favouritesRoute = require("./routes/favourites");
 
 mongoose
-.connect(process.env.DATABASE, {
+.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
