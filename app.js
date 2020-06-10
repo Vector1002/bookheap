@@ -31,9 +31,9 @@ mongoose
   });
 
 
-  // app.get('/',(req,res)=>{
-  //   res.send('<h1>dfasfa</h1>');
-  // });
+  app.get('/',(req,res)=>{
+    res.send('<h1>dfasfa</h1>');
+  });
 
   //middlewares
   app.use(bodyParser.json());
