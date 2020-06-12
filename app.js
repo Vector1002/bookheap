@@ -7,6 +7,7 @@ const cookieParser=require('cookie-parser');
 const bodyParser=require('body-parser');
 const mongoose=require('mongoose');
 const cors=require('cors');
+var path=require('path');
 
 morgan('tiny');
 
@@ -27,13 +28,12 @@ mongoose
     console.log("DB CONNECTED");
   })
   .catch((e)=>{
-    console.log(process.env.MONGODB_URI)
     console.log(e);
   });
 
 
   // app.get('/',(req,res)=>{
-  //   res.send('<h1>dfasfa</h1>');
+  //   console.log('ddd')
   // });
 
   //middlewares
@@ -49,8 +49,12 @@ mongoose
 
 
   if(process.env.NODE_ENV=='production'){
+    // console.log('jeee',__dirname);
     app.use(express.static('build'));
-
+    // app.use(express.static(path.join(__dirname, 'build')));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname+'/build/index.html'));
+    });
   }
 
 
