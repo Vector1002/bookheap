@@ -5,9 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node index.js",
-    "dev":"nodemon index.js",
-    "build": "react-scripts build"
-
+    "dev": "nodemon index.js"
   },
   "author": "Sachin Mittal",
   "license": "ISC",
@@ -23,6 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0",
+    "path": "^0.12.7",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
