@@ -38,7 +38,7 @@ mongoose
 
   //middlewares
   app.use(bodyParser.json());
-  app.use(cors({ origin: '*' }));
+  app.use(cors());
   app.use(cookieParser());
 
   ///myRoutes
