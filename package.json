@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node index.js",
-    "dev":"nodemon index.js"
+    "dev":"nodemon index.js",
+    "build": "react-scripts build"
+
   },
   "author": "Sachin Mittal",
   "license": "ISC",
