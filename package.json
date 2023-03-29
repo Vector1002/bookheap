@@ -4,8 +4,8 @@
   "description": "A book depot ",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev":"nodemon app.js"
+    "start": "node index.js",
+    "dev":"nodemon index.js"
   },
   "author": "Sachin Mittal",
   "license": "ISC",
