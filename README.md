@@ -1,6 +1,5 @@
-### Book Selling App API
-It is a book selling web app built in a MERN stack and deployed on Netlify. You can sell books with images and can also see what others are selling.
+### PxIxtheme App API
+PIXITheme provides high-quality, creative design and easy-to-use Premium & Free Bootstrap Admin Template, HTML & WordPress Template, Plugins, Graphics, and more.
 
-Live Preview at : https://bookheap-app.netlify.app/
 
 
